@@ -1,0 +1,93 @@
+public double matrixSTD(double[][] a) //standard deviation
+{
+	double avg;
+	double sum = 0.0;
+	double top = 0.0;
+	int count = 0;
+	
+	for(int i = 0; i < a.length; i++)
+	{
+		for(int j = 0; j < a[i].length; j ++)
+		{
+			sum += a[i][j];
+			count ++;
+		}
+	}
+	
+	avg = sum/count;
+	
+	for(int i = 0; i < a.length; i++)
+	{
+		for(int j = 0; j < a[i].length; j ++)
+		{
+			top += Math.pow(a[i][j] - avg, 2);			
+		}
+	}
+	
+	return Math.sqrt(top/count);
+}
+
+
+public int[][] add(int[][] a, int [][]b) //adding
+{
+	int aRow = a.length;
+	int aCol = a[0].length;
+	int bRow = b.length;
+	int bCol = b[0].length;
+	int [][] invalid = {{ -1,-1},
+						{ -1, -1}};
+	
+	
+	if(aRow == bRow && aCol == bCol)
+	{
+		int[][] c = new int[aRow][aCol];
+		
+		for(int i = 0; i < aRow; i++)
+		{
+			for(int j = 0; j < aCol; j++)
+			{
+				c[i][j] = a[i][j] + b[i][j];
+			}
+		}
+		
+		return c;
+		
+	}
+	else
+	{
+		return invalid;
+	}
+	
+}
+
+public int[][] multiply(int[][] a, int[][] b) //multiply
+{
+	int aRow = a.length;
+	int aCol = a[0].length;
+	int bRow = b.length;
+	int bCol = b[0].length;
+	
+	int [][] invalid = {{ -1,-1},
+						{ -1, -1}};
+	if(aCol == bRow)
+	{
+		int[][] c = new int[aRow][bCol];
+		
+		for(int i = 0; i < aRow; i++)
+		{
+			for(int j = 0; j < bCol; j++)
+			{
+				for(int k = 0; k < bRow ; k++)
+				{
+					c[i][j] += a[i][k] * b[k][j];
+				}
+			}
+		}
+		return c;
+		
+	}
+	else
+	{
+		return invalid;
+	}
+}
